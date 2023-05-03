@@ -16,6 +16,11 @@ matches = re.findall(pattern, md_content)
 
 # loop through the matches and download the videos
 for title, url in matches:
+    # check if the file already exists
+    if os.path.exists(f"videos/{title}.mp4"):
+        print(f"videos/{title} already downloaded, skipping...")
+        continue
+
     # extract the video ID from the Vimeo URL
     video_id = url.split("/")[-2]
 
